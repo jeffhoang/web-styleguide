@@ -10,6 +10,10 @@ def warn = { msg ->
   currentBuild.description += "warning: ${msg}<br />\n"
 }
 
+def cleanup = { ->
+  // TODO - cleanup requires here?
+}
+
 ansiColor('xterm') {
   timestamps {
     timeout(90) {
