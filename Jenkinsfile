@@ -73,9 +73,9 @@ ansiColor('xterm') {
 
           stage('Install') {
             withCredentials([
-              string(credentialsId: 'JS_SDK_NPM_PUBLISH_TOKEN', variable: 'JS_SDK_NPM_PUBLISH_TOKEN')
+              string(credentialsId: 'WEBSTYLES_NPM_TOKEN', variable: 'WEBSTYLES_NPM_TOKEN')
             ]) {
-              sh 'echo \'//registry.npmjs.org/:_authToken=${JS_SDK_NPM_PUBLISH_TOKEN}\' >> .npmrc'
+              sh 'echo \'//registry.npmjs.org/:_authToken=${WIDGETS_NPM_TOKEN}\' >> .npmrc'
               sh '''#!/bin/bash -e
               source ~/.nvm/nvm.sh
               nvm install v8.11.3
@@ -89,7 +89,7 @@ ansiColor('xterm') {
 
           stage('Static Analysis') {
             withCredentials([
-              string(credentialsId: 'JS_SDK_NPM_PUBLISH_TOKEN', variable: 'JS_SDK_NPM_PUBLISH_TOKEN')
+              string(credentialsId: 'WEBSTYLES_NPM_TOKEN', variable: 'WEBSTYLES_NPM_TOKEN')
             ]) {
               sh '''#!/bin/bash -e
               source ~/.nvm/nvm.sh
@@ -101,7 +101,7 @@ ansiColor('xterm') {
 
           stage('Bump version') {
             withCredentials([
-              string(credentialsId: 'JS_SDK_NPM_PUBLISH_TOKEN', variable: 'JS_SDK_NPM_PUBLISH_TOKEN')
+              string(credentialsId: 'WEBSTYLES_NPM_TOKEN', variable: 'WEBSTYLES_NPM_TOKEN')
             ]) {
               sh '''#!/bin/bash -e
               source ~/.nvm/nvm.sh
@@ -139,7 +139,7 @@ ansiColor('xterm') {
 
             stage('Publish to NPM') {
               withCredentials([
-                string(credentialsId: 'JS_SDK_NPM_PUBLISH_TOKEN', variable: 'JS_SDK_NPM_PUBLISH_TOKEN')
+                string(credentialsId: 'WEBSTYLES_NPM_PUBLISH_TOKEN', variable: 'WEBSTYLES_NPM_TOKEN')
               ]) {
                 try {
                   sh 'echo \'//registry.npmjs.org/:_authToken=${WEBSTYLES_NPM_TOKEN}\' >> $HOME/.npmrc'
